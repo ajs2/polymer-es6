@@ -1,0 +1,35 @@
+<link rel="import" href="../../bower/polymer/polymer.html">
+
+<dom-module id="my-app">
+    <template>
+        <h1>YES</h1>
+        <div>{{data.name}}</div>
+    </template>
+    <script>
+        import data from './js/my-data';
+
+        (function () {
+            'use strict';
+
+            class MyApp {
+                beforeRegister() {
+                    this.is = 'my-app';
+
+                    this.properties = {
+                        data: {
+                            type: Object,
+                            value: function () {
+                                return data;
+                            },
+                            observer: '_updateQuotes'
+                        }
+                    };
+                }
+                ready() {}
+            }
+
+            // Register the element using Polymer's constructor.
+            Polymer(MyApp);
+        })();
+    </script>
+</dom-module>
